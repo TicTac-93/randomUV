@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>188</width>
-    <height>247</height>
+    <width>320</width>
+    <height>222</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>UV Randomizer</string>
@@ -18,70 +24,17 @@
     <number>5</number>
    </property>
    <property name="leftMargin">
-    <number>10</number>
+    <number>2</number>
    </property>
    <property name="topMargin">
-    <number>10</number>
+    <number>2</number>
    </property>
    <property name="rightMargin">
-    <number>10</number>
+    <number>2</number>
    </property>
    <property name="bottomMargin">
-    <number>10</number>
+    <number>2</number>
    </property>
-   <item>
-    <widget class="QGroupBox" name="grp_setup">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="title">
-      <string>Setup</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <property name="spacing">
-       <number>5</number>
-      </property>
-      <property name="leftMargin">
-       <number>5</number>
-      </property>
-      <property name="topMargin">
-       <number>5</number>
-      </property>
-      <property name="rightMargin">
-       <number>5</number>
-      </property>
-      <property name="bottomMargin">
-       <number>5</number>
-      </property>
-      <item>
-       <widget class="QPushButton" name="btn_hold">
-        <property name="text">
-         <string>Hold UV Selection</string>
-        </property>
-        <property name="checkable">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
    <item>
     <widget class="QGroupBox" name="grp_options">
      <property name="title">
@@ -125,21 +78,21 @@
           <number>5</number>
          </property>
          <item>
-          <widget class="QCheckBox" name="chk_translate">
+          <widget class="QCheckBox" name="chk_t">
            <property name="text">
             <string>Translate</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="chk_rotate">
+          <widget class="QCheckBox" name="chk_r">
            <property name="text">
             <string>Rotate</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="chk_scale">
+          <widget class="QCheckBox" name="chk_s">
            <property name="text">
             <string>Scale</string>
            </property>
@@ -149,17 +102,31 @@
        </widget>
       </item>
       <item>
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+       <widget class="QGroupBox" name="grp_minmax">
+        <property name="title">
+         <string>Min / Max</string>
         </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
+        <layout class="QFormLayout" name="formLayout">
+         <item row="0" column="0">
+          <widget class="QDoubleSpinBox" name="spn_t_min"/>
+         </item>
+         <item row="0" column="1">
+          <widget class="QDoubleSpinBox" name="spn_t_max"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QDoubleSpinBox" name="spn_r_min"/>
+         </item>
+         <item row="1" column="1">
+          <widget class="QDoubleSpinBox" name="spn_r_max"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QDoubleSpinBox" name="spn_s_min"/>
+         </item>
+         <item row="2" column="1">
+          <widget class="QDoubleSpinBox" name="spn_s_max"/>
+         </item>
+        </layout>
+       </widget>
       </item>
       <item>
        <widget class="QGroupBox" name="grp_increment">
@@ -186,13 +153,13 @@
           <number>5</number>
          </property>
          <item>
-          <widget class="QDoubleSpinBox" name="spn_translate"/>
+          <widget class="QDoubleSpinBox" name="spn_t_inc"/>
          </item>
          <item>
-          <widget class="QDoubleSpinBox" name="spn_rotate"/>
+          <widget class="QDoubleSpinBox" name="spn_r_inc"/>
          </item>
          <item>
-          <widget class="QDoubleSpinBox" name="spn_scale"/>
+          <widget class="QDoubleSpinBox" name="spn_s_inc"/>
          </item>
         </layout>
        </widget>
@@ -201,46 +168,97 @@
     </widget>
    </item>
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout_5">
-     <property name="spacing">
-      <number>5</number>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
      </property>
-     <property name="topMargin">
-      <number>10</number>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>0</height>
+      </size>
      </property>
-     <item>
-      <widget class="QPushButton" name="btn_randomize">
-       <property name="text">
-        <string>Randomize UVs</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QProgressBar" name="bar_progress">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>5</height>
-        </size>
-       </property>
-       <property name="value">
-        <number>100</number>
-       </property>
-       <property name="textVisible">
-        <bool>false</bool>
-       </property>
-       <property name="invertedAppearance">
-        <bool>false</bool>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    </spacer>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="grp_randomizer">
+     <property name="title">
+      <string>Randomizer</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_5">
+      <property name="spacing">
+       <number>5</number>
+      </property>
+      <property name="leftMargin">
+       <number>5</number>
+      </property>
+      <property name="topMargin">
+       <number>5</number>
+      </property>
+      <property name="rightMargin">
+       <number>5</number>
+      </property>
+      <property name="bottomMargin">
+       <number>5</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="lbl_status">
+        <property name="text">
+         <string>Whoops, something didn't initialize correctly!</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <property name="spacing">
+         <number>5</number>
+        </property>
+        <item>
+         <widget class="QPushButton" name="btn_hold">
+          <property name="text">
+           <string>1 - Hold UV Selection</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_randomize">
+          <property name="text">
+           <string>2 - Randomize UVs</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QProgressBar" name="bar_progress">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>5</height>
+         </size>
+        </property>
+        <property name="value">
+         <number>100</number>
+        </property>
+        <property name="textVisible">
+         <bool>false</bool>
+        </property>
+        <property name="invertedAppearance">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </item>
   </layout>
  </widget>
