@@ -1,5 +1,5 @@
 # --------------------------------
-#   Bake All Anim v1.0.0 Release
+#   UV Randomizer v1.0.0 Release
 # --------------------------------
 
 # Destroys instances of the dialog before recreating it
@@ -82,7 +82,7 @@ class UVRandomizerUI(QtW.QDialog):
 
         # Titling
 
-        self._window_title = 'UV Randomizer DEV BUILD'
+        self._window_title = 'UV Randomizer v1.0.0'
         self.setWindowTitle(self._window_title)
 
         # ---------------------------------------------------
@@ -143,7 +143,8 @@ class UVRandomizerUI(QtW.QDialog):
                         '%s The current modifier MUST be an Unwrap UVW with some elements selected!' % self._wrn,
                         '%s Holding UV Selection...' % self._grn,
                         '%s Randomizing UVs...' % self._grn,
-                        '%s See Max Listener for details' % self._err]
+                        '%s See Max Listener for details' % self._err,
+                        '%s The object has changed since Holding UV Selection!' % self._wrn]
         # Set initial status label
         self._lbl_status.setText(self._status[0])
 
@@ -155,7 +156,6 @@ class UVRandomizerUI(QtW.QDialog):
     # ---------------------------------------------------
 
     def _get_settings(self):
-        print '_get_settings()'
 
         self._settings['translate'] = self._chk_t.isChecked()
         self._settings['rotate'] = self._chk_r.isChecked()
@@ -261,11 +261,15 @@ class UVRandomizerUI(QtW.QDialog):
         rt = self._rt
 
         try:
-            # Check that the current modifier is an Unwrap_UVW
+            # Validate the current modifier, element list, and object.
             # We use rt.classOf() to get the actual MaxScript class
             uv = rt.modPanel.getCurrentObject()
             if rt.classOf(uv) != rt.Unwrap_UVW:
                 self._lbl_status.setText(self._status[2])
+            elif len(self._elements) == 0:
+                self._lbl_status.setText(self._status[2])
+            elif rt.getCurrentSelection()[0] != self._object:
+                self._lbl_status.setText(self._status[6])
             else:
                 self._lbl_status.setText(self._status[4])
 
@@ -294,7 +298,6 @@ class UVRandomizerUI(QtW.QDialog):
                                 tv = tv - (tv % t_range[2])
                             t_uvw = rt.Point3(tu, tv, 0)
                             uv.moveSelected(t_uvw)
-                            print 'Translate %s' % t_uvw
 
                         if self._settings['rotate']:
                             # Shorthand var
@@ -307,7 +310,6 @@ class UVRandomizerUI(QtW.QDialog):
                             # rotateSelectedCenter expects radians
                             angle = radians(angle)
                             uv.rotateSelectedCenter(angle)
-                            print 'Rotate %sdeg' % angle
 
                         if self._settings['scale']:
                             # Shorthand var
@@ -320,7 +322,8 @@ class UVRandomizerUI(QtW.QDialog):
                             # scaleSelectedCenter 0-1 == 0-100 percent, so scale these values accordingly
                             scale = scale / 100
                             uv.scaleSelectedCenter(scale, 0)
-                            print 'Scale %s' % scale
+
+                self._lbl_status.setText(self._status[1])
 
 
         except Exception as e:
@@ -341,4 +344,4 @@ ui = UVRandomizerUI(_uif, pymxs, _app)
 ui.show()
 
 # DEBUG
-print "\rTest Version 35"
+# print "\rTest Version 39"

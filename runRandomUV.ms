@@ -1,6 +1,6 @@
-macroScript randomUV_v01
+macroScript randomUV
 	category:"jScripts"
-	toolTip:"Random UV v01"
+	toolTip:"UV Randomizer v1.0"
 (
-	python.ExecuteFile @"D:\dump\_BDF\python\workshop\randomUV\randomUV.py"
+	python.ExecuteFile @"C:\PATH\TO\randomUV\randomUV.py"
 )
