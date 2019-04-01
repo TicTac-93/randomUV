@@ -1,7 +1,7 @@
 # randomUV
 A 3dsMax script that works with the UnwrapUVW modifier to randomize UV element transforms.
 
-Install by copying the bakeAllAnim folder to your 3ds Max scripts directory.
+Install by copying the randomUV folder to your 3ds Max scripts directory.
 Run in 3ds Max using with the MaxScript snippet:
 `python.ExecuteFile @"C:\path\to\randomUV\randomUV.py"`
 
